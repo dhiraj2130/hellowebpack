@@ -1,0 +1,23 @@
+{
+  "name": "testgit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config=config/webpack.dev.js",
+    "build": "webpack --config=config/webpack.dev.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^4.2.1",
+    "extract-loader": "^5.1.0",
+    "file-loader": "^6.0.0",
+    "html-loader": "^1.1.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
