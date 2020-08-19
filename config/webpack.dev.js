@@ -1,4 +1,6 @@
 const path = require('path')
+const webpack = require('webpack')
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     entry:{
         main:"./src/main.js"
@@ -11,10 +13,23 @@ module.exports = {
     },
     devServer:{
         contentBase:"dist",
-        overlay:true
+        hot:true,
+        stats:{
+            colors:true
+        }
     },
+    devtool:"source-map",
     module:{
         rules:[
+            {
+                test:/\.js$/,
+                use:[
+                    {
+                        loader:"babel-loader"
+                    }
+                ],
+                exclude:/node_modules/
+            },
             {
                 test: /\.css$/,
                 use:[
@@ -30,19 +45,27 @@ module.exports = {
         test:/\.html$/,
         use: [
             {
+                loader:"html-loader",
+            },
+        ]
+    },
+    {
+        test:/\.(jpg|gif|png)$/,
+        use:[
+            {
                 loader:"file-loader",
                 options:{
-                    name:"[name].html"
+                    name:"images/[name].[ext]"
                 }
-            },
-            {
-                loader:"extract-loader"
-            },
-            {
-                loader:"html-loader"
             }
         ]
     }
 ]
 },
+plugins:[
+    new webpack.HotModuleReplacementPlugin(),
+    new HTMLWebpackPlugin({
+        template: "./src/index.html"
+    })
+]
 }
